@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:50:56 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/24 03:52:35 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/24 06:07:58 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ typedef struct s_game
 	int		c_count;
 	int		i;
 	int		x;
-	void 	*player;
-	void 	*collectible;
-	void 	*exit;
-	void 	*floor;
-	void 	*wall;
+	void	*player;
+	void	*collectible;
+	void	*exit;
+	void	*floor;
+	void	*wall;
 }			t_game;
 
 void		map_open(char *file, t_game *game);
@@ -53,5 +53,6 @@ void		ft_error(t_game *game, char *msg);
 void		count_characters(char *map, t_game *game);
 void		map_path_check(t_game *game);
 int			ft_strall(char *str, char c);
+void		load_images(t_game *game);
 
 #endif
