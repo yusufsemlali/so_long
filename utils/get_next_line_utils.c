@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 20:02:33 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/18 23:18:55 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/23 23:34:45 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-size_t	ft_strlcat(char *dst, char *src, size_t dstsize)
+size_t	ft_strlcat_2(char *dst, char *src, size_t dstsize)
 {
 	size_t	i;
 	size_t	len_d;
@@ -58,7 +58,7 @@ size_t	ft_strlcat(char *dst, char *src, size_t dstsize)
 	return (len_d + len_s);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr_2(char *s, unsigned int start, size_t len)
 {
 	char	*str;
 	char	*str_start;
@@ -78,7 +78,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	return (str_start);
 }
 
-char	*ft_strjoin(char *line, char *buf)
+char	*ft_strjoin_2(char *line, char *buf)
 {
 	char	*concat;
 
@@ -89,8 +89,8 @@ char	*ft_strjoin(char *line, char *buf)
 		return (NULL);
 	concat[0] = '\0';
 	if (line)
-		ft_strlcat(concat, line, ft_strlen(line) + 1);
-	ft_strlcat(concat, buf, ft_strlen(buf) + ft_strlen(line) + 1);
+		ft_strlcat_2(concat, line, ft_strlen(line) + 1);
+	ft_strlcat_2(concat, buf, ft_strlen(buf) + ft_strlen(line) + 1);
 	if (!concat[0])
 		return (free(concat), NULL);
 	return (free(line), concat);

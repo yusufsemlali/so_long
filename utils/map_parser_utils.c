@@ -6,44 +6,14 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 02:50:32 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/19 03:06:56 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/24 03:49:27 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include "get_next_line.h"
 
-int	ft_strspn(const char *s, const char c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == c)
-			return (i);
-		i++;
-	}
-	return (i);
-}
-
-int	ft_strrchr(const char *s, const char c)
-{
-	int	i;
-	int	x;
-
-	i = ft_strlen(s);
-	x = 0;
-	while (x < i)
-	{
-		if (s[x] != c)
-			return (x);
-		x++;
-	}
-	return (-1);
-}
-
-void	count_characters(char *map, t_map *map_info)
+void	count_characters(char *map, t_game *game)
 {
 	int	i;
 
@@ -51,16 +21,24 @@ void	count_characters(char *map, t_map *map_info)
 	while (map[i] != '\0')
 	{
 		if (map[i] == 'P')
-			map_info->p_count++;
+			game->p_count++;
 		else if (map[i] == 'C')
-			map_info->c_count++;
+			game->c_count++;
 		else if (map[i] == 'E')
-			map_info->e_count++;
+			game->e_count++;
 		else if (map[i] != '1' && map[i] != '0')
-		{
-			printf("Error\n");
-			exit(1);
-		}
+			ft_error(game, "invalid character in map");
 		i++;
 	}
+}
+
+int	ft_strall(char *str, char c)
+{
+	while (*str)
+	{
+		if (*str != c)
+			return (0);
+		str++;
+	}
+	return (1);
 }

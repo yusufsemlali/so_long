@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 10:08:09 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/11 21:54:15 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/23 23:29:00 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_get_remainder(char *line)
 
 	if (!ln_exists(line))
 		return (free(line), NULL);
-	result = ft_substr(line, ln_index(line) + 1, ft_strlen(line));
+	result = ft_substr_2(line, ln_index(line) + 1, ft_strlen(line));
 	free(line);
 	return (result);
 }
@@ -48,7 +48,7 @@ char	*ft_read_buffer(int fd, char *line)
 		if (lines_read < 0)
 			return (free(buffer), free(line), NULL);
 		buffer[lines_read] = '\0';
-		line = ft_strjoin(line, buffer);
+		line = ft_strjoin_2(line, buffer);
 	}
 	free(buffer);
 	return (line);
@@ -66,7 +66,7 @@ char	*get_next_line(int fd)
 	line = ft_read_buffer(fd, line);
 	if (!line || !line[0])
 		return (NULL);
-	output = ft_substr(line, 0, ln_index(line) + 1);
+	output = ft_substr_2(line, 0, ln_index(line) + 1);
 	line = ft_get_remainder(line);
 	return (output);
 }

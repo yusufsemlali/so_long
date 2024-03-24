@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 10:08:11 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/19 03:04:53 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/24 03:49:03 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,15 @@
 #  define BUFFER_SIZE 32
 # endif
 
-typedef struct s_map
-{
-	int	p_count;
-	int	c_count;
-	int	e_count;
-	int	l_count;
-	int	l_len;
-}		t_map;
-
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
 size_t	ln_exists(char *buf);
 size_t	ln_index(char *buf);
-char	*ft_strjoin(char *line, char *buf);
-size_t	ft_strlcat(char *dst, char *src, size_t dstsize);
-char	*ft_substr(char *s, unsigned int start, size_t len);
+char	*ft_strjoin_2(char *line, char *buf);
+size_t	ft_strlcat_2(char *dst, char *src, size_t dstsize);
+char	*ft_substr_2(char *s, unsigned int start, size_t len);
 int		ft_strspn(const char *s, const char c);
-int		ft_strrchr(const char *s, const char c);
-void	count_characters(char *map, t_map *map_info);
+int		ft_strchr_2(const char *s, const char c);
+int		ft_strrchr_2(const char *s, const char c);
 
 #endif
