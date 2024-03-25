@@ -6,74 +6,158 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 03:51:05 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/24 06:50:18 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/25 03:33:18 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../so_long.h"
 #include "get_next_line.h"
-void *create_sub_image(t_game *game, void *src_img, int width, int height)
+
+#define TILE_SIZE 64
+
+void	place_walls(t_game *game)
 {
-    void *sub_img;
-    int *src_data;
-    int *sub_data;
-    int bpp, sl, endian;
-
-    // Create a new image of the required size
-    sub_img = mlx_new_image(game->mlx, width, height);
-
-    // Get the data addresses of the source and new images
-    src_data = (int *)mlx_get_data_addr(src_img, &bpp, &sl, &endian);
-    sub_data = (int *)mlx_get_data_addr(sub_img, &bpp, &sl, &endian);
-
-    // Copy the pixel data from the source image to the new image
-    for (int y = 0; y < height; y++)
-    {
-        for (int x = 0; x < width; x++)
-        {
-            sub_data[y * width + x] = src_data[y * width + x];
-        }
-    }
-
-    return sub_img;
+	int i, j;
+	for (i = 0; i <= game->rows; i++)
+	{
+		for (j = 0; j <= game->cols; j++)
+		{
+			if (game->map[i][j] == '1')
+			{
+				// Use wall_4 for the border
+				if (i == 0 || i == game->rows - 1 || j == 0 || j == game->cols
+					- 1)
+				{
+					mlx_put_image_to_window(game->mlx, game->window,
+						game->walls[2], j * TILE_SIZE, i * TILE_SIZE);
+				}
+				// Use wall_2 for the inner walls
+				else
+				{
+					mlx_put_image_to_window(game->mlx, game->window,
+						game->walls[5], j * TILE_SIZE, i * TILE_SIZE);
+				}
+			}
+		}
+	}
 }
 
-void place_walls(t_game *game)
+void	place_floors(t_game *game)
 {
-    int x, y;
+	int i, j;
+	for (i = 0; i <= game->rows; i++)
+	{
+		for (j = 0; j <= game->cols; j++)
+		{
+			if (game->map[i][j] == '0')
+			{
+				mlx_put_image_to_window(game->mlx, game->window, game->floor, j
+					* TILE_SIZE, i * TILE_SIZE);
+			}
+		}
+	}
+}
+void	place_exit(t_game *game)
+{
+	int i, j;
+	for (i = 0; i <= game->rows; i++)
+	{
+		for (j = 0; j <= game->cols; j++)
+		{
+			if (game->map[i][j] == 'E')
+			{
+				mlx_put_image_to_window(game->mlx, game->window, game->exit, j
+					* TILE_SIZE, i * TILE_SIZE);
+			}
+		}
+	}
+}
 
-    for (y = 0; y < game->rows; y++)
+void place_player(t_game *game)
+{
+    int i, j;
+    for (i = 0; i <= game->rows; i++) 
     {
-        for (x = 0; x < game->cols; x++)
+        for (j = 0; j <= game->cols; j++) 
         {
-            if (game->map[y][x] == '0')
+            if (game->map[i][j] == 'P')
             {
-                // void *tile = create_sub_image(game, game->floor, 64, 64);
-               mlx_put_image_to_window(game->mlx, game->window,
-                    game->floor, x * 64, y * 64);
-                // mlx_destroy_image(game->mlx, tile);  // Free the tile image
+                mlx_put_image_to_window(game->mlx, game->window, game->player, j * TILE_SIZE, i * TILE_SIZE); 
             }
         }
     }
 }
 
-void	load_images(t_game *game)
+void place_collectables(t_game *game)
 {
-	int	x;
-	int	y;
+    int i, j;
+    int collectable_count = 0;
+    for (i = 0; i <= game->rows; i++) 
+    {
+        for (j = 0; j <= game->cols; j++) 
+        {
+            if (game->map[i][j] == 'C')
+            {
+                mlx_put_image_to_window(game->mlx, game->window, game->collectable[collectable_count % 7], j * TILE_SIZE, i * TILE_SIZE); 
+                collectable_count++;
+            }
+        }
+    }
+}
 
-	game->floor = mlx_xpm_file_to_image(game->mlx, "./assets/floor2.xpm", &x, &y);
-	if (!game->floor)
-		ft_error(game, "floor image not found");
-        place_walls(game);
-	// game->player = mlx_xpm_file_to_image(game->mlx, "images/player.xpm",
-	// 		&game->player_width, &game->player_height);
-	// game->collectible = mlx_xpm_file_to_image(game->mlx,
-	// 		"images/collectible.xpm", &game->collectible_width,
-	// 		&game->collectible_height);
-	// game->exit = mlx_xpm_file_to_image(game->mlx, "images/exit.xpm",
-	// 		&game->exit_width, &game->exit_height);
-	// game->floor = mlx_xpm_file_to_image(game->mlx, "images/floor.xpm",
-	// 		&game->floor_width, &game->floor_height);
+void load_images(t_game *game)
+{
+    char *wall_files[6] = {"./assets/wall/wall_1.xpm",
+            "./assets/wall/wall_2.xpm", "./assets/wall/wall_3.xpm",
+            "./assets/wall/wall_4.xpm", "./assets/wall/wall_5.xpm",
+            "./assets/wall/wall_6.xpm"};
+    char *floor_file = "./assets/floor/floor_1.xpm";
+    char *exit_file = "./assets/exit/door_1.xpm";
+    char *player_file = "./assets/player/idle_1.xpm";
+    char *collectable_files[7] = {"./assets/collectables/collectable_1.xpm",
+            "./assets/collectables/collectable_2.xpm", "./assets/collectables/collectable_3.xpm",
+            "./assets/collectables/collectable_4.xpm", "./assets/collectables/collectable_5.xpm",
+            "./assets/collectables/collectable_6.xpm", "./assets/collectables/collectable_7.xpm"};
+
+    int x, y;
+    // Load all wall images
+    for (int i = 0; i < 6; i++)
+    {
+        game->walls[i] = mlx_xpm_file_to_image(game->mlx, wall_files[i], &x, &y);
+        if (!game->walls[i])
+            ft_error(game, "Wall image not found");
+    }
+
+    // Load floor image
+    game->floor = mlx_xpm_file_to_image(game->mlx, floor_file, &x, &y);
+    if (!game->floor)
+        ft_error(game, "Floor image not found");
+
+    // Load exit image
+    game->exit = mlx_xpm_file_to_image(game->mlx, exit_file, &x, &y);
+    if (!game->exit)
+        ft_error(game, "Exit image not found");
+
+    // Load player image
+    game->player = mlx_xpm_file_to_image(game->mlx, player_file, &x, &y);
+    if (!game->player)
+        ft_error(game, "Player image not found");
+
+    // Load collectable images
+    for (int i = 0; i < 7; i++)
+    {
+        game->collectable[i] = mlx_xpm_file_to_image(game->mlx, collectable_files[i], &x, &y);
+        if (!game->collectable[i])
+		{
+			printf("Collectable %d image not found\n", i);
+            ft_error(game, "Collectable image not found");
+		}
+    }
+
+    place_walls(game);
+    // place_floors(game);
+    place_exit(game);
+    place_player(game);
+    place_collectables(game);
 }

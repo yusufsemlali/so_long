@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:50:56 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/24 06:07:58 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/25 02:52:14 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ typedef struct s_game
 	int		i;
 	int		x;
 	void	*player;
-	void	*collectible;
+	void	*collectable[7];
 	void	*exit;
 	void	*floor;
-	void	*wall;
+	void	*walls[6];
 }			t_game;
 
 void		map_open(char *file, t_game *game);
