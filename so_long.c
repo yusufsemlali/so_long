@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:48:27 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/25 08:08:26 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:38:09 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,20 @@ void	ft_error(t_game *game, char *msg)
 	close_game(game);
 }
 
-
+int	key_press_event(int keycode, t_game *game)
+{
+	if (keycode == KEY_W || keycode == KEY_UP)
+		movement(game, 0, -1);
+	if (keycode == KEY_A || keycode == KEY_LEFT)
+		movement(game, -1, 0);
+	if (keycode == KEY_S || keycode == KEY_DOWN)
+		movement(game, 0, 1);
+	if (keycode == KEY_D || keycode == KEY_RIGHT)
+		movement(game, 1, 0);
+	if (keycode == KEY_ESC)
+		close_game(game);
+	return (0);
+}
 
 int	main(int ac, char **av)
 {
@@ -46,12 +59,11 @@ int	main(int ac, char **av)
 	game = calloc(1, sizeof(t_game));
 	map_open(av[1], game);
 	game->mlx = mlx_init();
-	game->w = game->cols * TILE_SIZE;
+	game->w = (game->cols + 1) * TILE_SIZE;
 	game->h = (game->rows + 1) * TILE_SIZE;
 	game->window = mlx_new_window(game->mlx, game->w, game->h, "so_long");
 	load_images(game);
 	mlx_hook(game->window, 2, 1L << 0, key_press_event, game);
-	mlx_hook(game->window, 3, 1L << 1, key_press_event, game);
 	mlx_hook(game->window, 17, 0, close_game, game);
 	mlx_loop(game->mlx);
 }

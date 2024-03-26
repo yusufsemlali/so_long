@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:50:56 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/25 08:00:35 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:38:17 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define KEY_ESC 53
 # define KEY_W 13
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
+# define KEY_ESC 53
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
 
 typedef struct s_game
 {
@@ -43,6 +47,7 @@ typedef struct s_game
 	int		p_count;
 	int		e_count;
 	int		c_count;
+	int		moves;
 	void	*player;
 	void	*collectable[7];
 	void	*exit;
@@ -52,6 +57,7 @@ typedef struct s_game
 	int		h;
 	int		i;
 	int		x;
+	int		y;
 	int		key_is_pressed;
 	void	*close_game;
 }			t_game;
