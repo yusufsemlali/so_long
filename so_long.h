@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:50:56 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/25 10:38:17 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/27 00:56:45 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+
+#define TILE_SIZE 64
+#define TILE_SIZE_S 32
 
 # define KEY_W 13
 # define KEY_A 0
@@ -40,6 +44,7 @@ typedef struct s_game
 	char	**map;
 	char	**visited;
 	char	*line;
+	int		tile_size;
 	int		rows;
 	int		cols;
 	int		player_x;
