@@ -20,7 +20,7 @@ function rand_char {
 
 # Get the index for the new map file
 index=3
-while [ -e "map/map_$index.ber" ]
+while [ -e "map/map_${width}x${height}_$index.ber" ]
 do
   index=$((index+1))
 done
@@ -51,6 +51,6 @@ do
     else
       printf "$(rand_char)"
     fi
-  done | tee -a "map/map_$index.ber"
-  printf "\n" | tee -a "map/map_$index.ber"
+  done | tee -a "map/map_${width}x${height}_$index.ber"
+  printf "\n" | tee -a "map/map_${width}x${height}_$index.ber"
 done

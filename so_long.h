@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:50:56 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/27 00:56:45 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/27 01:53:18 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_game
 	char	**map;
 	char	**visited;
 	char	*line;
-	int		tile_size;
+	int		t_s;
 	int		rows;
 	int		cols;
 	int		player_x;
@@ -73,6 +73,7 @@ void		count_characters(char *map, t_game *game);
 void		map_path_check(t_game *game);
 int			ft_strall(char *str, char c);
 void		load_images(t_game *game);
+void		load_small_images(t_game *game);
 void		movement(t_game *game, int x, int y);
 int			close_game(t_game *game);
 void		game_update(t_game *game);

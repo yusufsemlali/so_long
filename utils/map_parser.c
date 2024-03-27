@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:48:33 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/24 03:34:06 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/27 02:29:53 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ void	get_rows_cols(t_game *game)
 	}
 	game->rows--;
 	game->cols--;
+	if (game->rows < 3 || game->cols < 3)
+		ft_error(game, "map is too small");
+	if (game->rows > 100 || game->cols > 100)
+		ft_error(game, "map is too big");
+	if (game->rows > 40 || game->cols > 40)
+		game->t_s = TILE_SIZE_S;
 }
 
 void	map_open(char *file, t_game *game)
