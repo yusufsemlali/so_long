@@ -1,0 +1,8 @@
+/* XPM */
+static char *collectable_6_s[] = {
+/* columns rows colors chars-per-pixel */
+"1 1 1 1 ",
+"  c #6E4821",
+/* pixels */
+" "
+};

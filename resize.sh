@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# Directory where the XPM files are located
-dir="assets/player/run"
+# Desired size of the output images
+size=$1
 
-# Iterate over the numbers 1 to 8
-for i in {1..8}; do
-    # Original XPM file
-    original_file="$dir/run_$i.xpm"
+# Directory where the image files are located
+dir="assets"
+
+# Find all .xpm and .png files in the directory and its subdirectories
+find "$dir" -type f \( -name "*.xpm" -o -name "*.png" \) | while read -r file; do
+    # New file with _s prefix
+    new_file="${file%.*}_s.${file##*.}"
     
-    # New XPM file with _s prefix
-    new_file="$dir/run_s_${i}.xpm"
-    
-    # Convert the original XPM file to 32x32 and save as the new file
-    convert "$original_file" -resize 32x32 "$new_file"
+    # Convert the file to the desired size and save as the new file
+    convert "$file" -resize ${size}x${size} "$new_file"
 done

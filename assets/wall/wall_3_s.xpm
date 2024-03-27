@@ -1,0 +1,8 @@
+/* XPM */
+static char *wall_3_s[] = {
+/* columns rows colors chars-per-pixel */
+"1 1 1 1 ",
+"  c #A78664",
+/* pixels */
+" "
+};

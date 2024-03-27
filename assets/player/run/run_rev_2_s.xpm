@@ -1,0 +1,8 @@
+/* XPM */
+static char *run_rev_2_s[] = {
+/* columns rows colors chars-per-pixel */
+"1 1 1 1 ",
+"  c None",
+/* pixels */
+" "
+};
