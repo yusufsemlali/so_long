@@ -1,8 +1,0 @@
-/* XPM */
-static char *wall_5_s[] = {
-/* columns rows colors chars-per-pixel */
-"1 1 1 1 ",
-"  c #AB947A",
-/* pixels */
-" "
-};

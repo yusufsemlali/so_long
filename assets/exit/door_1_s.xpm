@@ -1,8 +1,0 @@
-/* XPM */
-static char *door_1_s[] = {
-/* columns rows colors chars-per-pixel */
-"1 1 1 1 ",
-"  c #9C836B",
-/* pixels */
-" "
-};

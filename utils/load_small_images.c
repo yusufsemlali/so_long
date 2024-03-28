@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:10:57 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/27 02:00:00 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/27 02:45:59 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,9 @@ void	load_small_images(t_game *game)
 			&x, &y);
 	if (!game->exit)
 		ft_error(game, "Exit image not found");
-	game->player = mlx_xpm_file_to_image(game->mlx,
+	game->player[0] = mlx_xpm_file_to_image(game->mlx,
 			"./assets/player/idle_1_s.xpm", &x, &y);
-	if (!game->player)
+	if (!game->player[0])
 		ft_error(game, "Player image not found");
 	load_walls(game);
 	load_collectables(game);

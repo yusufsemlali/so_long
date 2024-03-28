@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:48:27 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/27 02:30:43 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/03/27 02:49:37 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,13 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (printf("Error\nInvalid number of arguments\n"), 0);
 	game = calloc(1, sizeof(t_game));
+	game->t_s = 64;
 	map_open(av[1], game);
 	game->mlx = mlx_init();
 	game->w = (game->cols + 1) * game->t_s;
 	game->h = (game->rows + 1) * game->t_s;
 	game->window = mlx_new_window(game->mlx, game->w, game->h, "so_long");
-	if (game->t_s == 64)
-		load_images(game);
-	else
-		load_small_images(game);
+	load_images(game);
 	printf("game->t_s = %d\n", game->t_s);
 	mlx_hook(game->window, 2, 1L << 0, key_press_event, game);
 	mlx_hook(game->window, 17, 0, close_game, game);
