@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:50:56 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/17 16:31:24 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:50:30 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,8 @@ void		put_img(t_game *game, void *img, int x, int y);
 void		update_window(t_game *game, void *img, int x, int y);
 void		print_number_of_moves(t_game *game, char pos);
 void		check_images(t_game *game, void **images, int num, char *message);
+void		place_elements(t_game *game);
+void		place_static_elements(t_game *game, int i, int j);
+void		place_dynamic_elements(t_game *game, int i, int j, int *c_count);
 
 #endif

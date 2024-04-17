@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:23:03 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/17 16:40:36 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:51:01 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,13 @@ void	put_img(t_game *game, void *img, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->window, img, x, y);
 }
+
 void	check_images(t_game *game, void **images, int num, char *message)
 {
-	int i = 0;
-	while (i < num)ˆ
+	int	i;
+
+	i = 0;
+	while (i < num)
 	{
 		if (!images[i])
 			ft_error(game, message);
