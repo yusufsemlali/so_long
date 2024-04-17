@@ -6,25 +6,25 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:48:27 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/27 02:49:37 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/16 21:21:39 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "so_long.h"
 #include <mlx.h>
-
+#include <stdio.h>
 int	close_game(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	while (game->map[i] != NULL)
+	while (game->map[i] != NULL)	
 		free(game->map[i++]);
 	free(game->map);
 	free(game->line);
 	free(game);
-	exit(0);
+	exit(0);	
 }
 
 void	ft_error(t_game *game, char *msg)
@@ -43,7 +43,7 @@ int	key_press_event(int keycode, t_game *game)
 	if (keycode == KEY_S || keycode == KEY_DOWN)
 		movement(game, 0, 1);
 	if (keycode == KEY_D || keycode == KEY_RIGHT)
-		movement(game, 1, 0);
+		// movement(game, 1, 0);	
 	if (keycode == KEY_ESC)
 		close_game(game);
 	return (0);

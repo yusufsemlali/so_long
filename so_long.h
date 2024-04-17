@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:50:56 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/27 03:02:25 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:31:24 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-
-#define TILE_SIZE 64
-#define TILE_SIZE_S 32
-#define FORWARD 0
-#define REVERSE 1
+# define TILE_SIZE 64
+# define TILE_SIZE_S 32
+# define FORWARD 0
+# define REVERSE 1
 
 # define KEY_W 13
 # define KEY_A 0
@@ -55,9 +54,9 @@ typedef struct s_game
 	int		e_count;
 	int		c_count;
 	int		moves;
-	int 	*player_idle;
+	int		*player_idle;
 	void	*player[8];
-	void	*player_rev[8];
+	void	*player_r[8];
 	void	*collectable[7];
 	void	*exit;
 	void	*floor;
@@ -67,7 +66,7 @@ typedef struct s_game
 	int		i;
 	int		x;
 	int		y;
-	int 	frame;
+	int		frame;
 	int		key_is_pressed;
 	void	*close_game;
 }			t_game;
@@ -84,5 +83,10 @@ int			close_game(t_game *game);
 void		game_update(t_game *game);
 int			key_press_event(int keycode, t_game *game);
 int			key_release_event(int keycode, t_game *game);
+void		*get_img(t_game *game, char *filepath, int *x, int *y);
+void		put_img(t_game *game, void *img, int x, int y);
+void		update_window(t_game *game, void *img, int x, int y);
+void		print_number_of_moves(t_game *game, char pos);
+void		check_images(t_game *game, void **images, int num, char *message);
 
 #endif
