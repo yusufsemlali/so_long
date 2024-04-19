@@ -6,85 +6,80 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 07:40:47 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/16 21:31:34 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:46:05 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-
-int	get_direction(int old_x, int old_y, int new_x, int new_y)
+void	get_direction(t_game *game, int x, int y)
 {
 	int	dx;
 	int	dy;
 
-	dx = new_x - old_x;
-	dy = new_y - old_y;
-	if (dx > 0)
-		return (FORWARD);
-	else if (dx < 0)
-		return (REVERSE);
-	else if (dy > 0)
-		return (FORWARD);
-	else if (dy < 0)
-		return (REVERSE);
-	return (FORWARD);
+	dx = x - game->player_x;
+	dy = y - game->player_y;
+	if (dx == 1)
+		game->direction = FORWARD;
+	if (dx == -1)
+		game->direction = REVERSE;
+	if (dy == 1)
+		game->direction = FORWARD;
+	if (dy == -1)
+		game->direction = REVERSE;
 }
 
-void	animate_player(t_game *game, int x, int y)
+void	animate_player(t_game *game, int new_x, int new_y)
 {
-	int	direction;
-	int	i;
+	if (game->direction == FORWARD)
+		mlx_put_image_to_window(game->mlx, game->window, game->player[game->frame],
+			new_x * 64, new_y * 64);
+	if (game->direction == REVERSE)
+		mlx_put_image_to_window(game->mlx, game->window, game->player_r[game->frame],
+			new_x * 64, new_y * 64);	
+	game->frame++;
+	if (game->frame == 8)
+		game->frame = 0;
+}
 
-	i = 0;
-	// Update the window with the floor image at the player's old position
-	update_window(game, game->floor, game->player_x, game->player_y);
-	// Calculate the direction of the player's movement
-	direction = get_direction(game->player_x, game->player_y, x, y);
-	// Animate the player
-	while (i < 8)
-	{
-		if (direction == FORWARD)
-			update_window(game, game->player[i], x, y);
-		else if (direction == REVERSE)
-			update_window(game, game->player_r[i], x, y);
-		usleep(20000);
-		i++;
-	}
-	// Update the window with the player's idle image at the new position
-	update_window(game, game->player_idle, x, y);
+void	render_map(t_game *game, int x, int y)
+{
+	mlx_put_image_to_window(game->mlx, game->window, game->floor, game->player_x
+		* 64, game->player_y * 64);
+	mlx_put_image_to_window(game->mlx, game->window, game->floor, x * 64, y
+		* 64);
+	animate_player(game, x, y);
+}
+
+void	print_moves(t_game *game)
+{
+	
+	game->moves++;
+	char *num = ft_strjoin("Moves: ", ft_itoa(game->moves));
+	mlx_string_put(game->mlx, game->window, 10, 10, 0xFFFFFF, num);	
 }
 
 void	movement(t_game *game, int x, int y)
 {
-	char	pos;
+	char	next;
 
-	game->x = game->player_x + x;
-	game->y = game->player_y + y;
-	pos = game->map[game->y][game->x];
-	if (pos == '1' || (pos == 'E' && game->c_count != 0))
+	next = game->map[y][x];
+	if (next == '1' || (next == 'E' && game->c_count != 0))
 		return ;
-	if (pos == 'C')
+	if (next == 'C')
 	{
 		game->c_count--;
-		game->map[game->y][game->x] = '0';
+		game->map[y][x] = '0';
 	}
-	if (pos == 'E' && game->c_count == 0)
+	if (next == 'E' && game->c_count == 0)
 	{
-		printf("You win!\n");
+		printf("You won!\n");
 		close_game(game);
 	}
-	// Animate the player
-	// animate_player(game, x, y);
-	
-	// Update the map with the new player position
-	game->map[game->player_y][game->player_x] = '0'; // Clear the old position
-	game->player_x = game->x;
-	game->player_y = game->y;
-	game->map[game->player_y][game->player_x] = 'P'; // Set the new position
-	// Display the new player position
-	update_window(game, game->player_idle, game->player_x, game->player_y);
-	// Display the floor at the old player position
-	update_window(game, game->floor, game->x, game->y);
-	print_number_of_moves(game, pos);
+	render_map(game, x, y);
+	game->map[game->player_y][game->player_x] = '0';
+	game->map[y][x] = 'P';
+	game->player_x = x;
+	game->player_y = y;
+	print_moves(game);
 }

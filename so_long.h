@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:50:56 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/17 16:50:30 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:46:07 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,20 @@ typedef struct s_game
 	int		e_count;
 	int		c_count;
 	int		moves;
-	int		*player_idle;
+	void	*player_idle;
 	void	*player[8];
 	void	*player_r[8];
 	void	*collectable[7];
-	void	*exit;
-	void	*floor;
 	void	*walls[6];
+	void	*floor;
+	void	*exit;
 	int		w;
 	int		h;
 	int		i;
 	int		x;
 	int		y;
 	int		frame;
+	int 	direction;
 	int		key_is_pressed;
 	void	*close_game;
 }			t_game;
@@ -85,7 +86,6 @@ int			key_press_event(int keycode, t_game *game);
 int			key_release_event(int keycode, t_game *game);
 void		*get_img(t_game *game, char *filepath, int *x, int *y);
 void		put_img(t_game *game, void *img, int x, int y);
-void		update_window(t_game *game, void *img, int x, int y);
 void		print_number_of_moves(t_game *game, char pos);
 void		check_images(t_game *game, void **images, int num, char *message);
 void		place_elements(t_game *game);

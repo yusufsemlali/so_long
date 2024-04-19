@@ -6,11 +6,10 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:10:57 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/17 16:54:08 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:59:29 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "../so_long.h"
 
 static void	load_walls(t_game *game)
