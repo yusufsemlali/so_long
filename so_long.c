@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:48:27 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/19 12:46:08 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:12:38 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (printf("Error\nInvalid number of arguments\n"), 0);
-	game = calloc(1, sizeof(t_game));
+	
+	game = ft_calloc(1, sizeof(t_game));
 	game->t_s = 64;
 	map_open(av[1], game);
 	game->mlx = mlx_init();

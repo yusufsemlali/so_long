@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 07:40:47 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/19 12:46:05 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:51:05 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	animate_player(t_game *game, int new_x, int new_y)
 			new_x * 64, new_y * 64);
 	if (game->direction == REVERSE)
 		mlx_put_image_to_window(game->mlx, game->window, game->player_r[game->frame],
-			new_x * 64, new_y * 64);	
+			new_x * 64, new_y * 64);
 	game->frame++;
 	if (game->frame == 8)
 		game->frame = 0;

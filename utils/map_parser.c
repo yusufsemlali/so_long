@@ -76,6 +76,7 @@ void	map_open(char *file, t_game *game)
 
 	game->line = NULL;
 	fd = open(file, O_RDONLY);
+	printf("%d\n",fd);
 	if (fd < 0)
 		ft_error(game, "file open error");
 	line = get_next_line(fd);
