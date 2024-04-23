@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:50:56 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/23 20:54:06 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/23 20:58:35 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ typedef struct s_game
 	int		x;
 	int		y;
 	int		frame;
-	int 	direction;
+	int		direction;
 	int		key_is_pressed;
 	void	*close_game;
 }			t_game;
 
-void 		ft_printf(char *str);
+void		ft_printf(char *str);
 void		map_open(char *file, t_game *game);
 void		ft_error(t_game *game, char *msg);
 void		count_characters(char *map, t_game *game);

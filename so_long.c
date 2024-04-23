@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:48:27 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/23 20:56:42 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/23 21:17:35 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,6 @@
 #include "so_long.h"
 #include <mlx.h>
 #include <stdio.h>
-
-int	close_game(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (game->map[i] != NULL)
-		free(game->map[i++]);
-	free(game->map);
-	free(game->line);
-	free(game);
-	exit(0);
-}
 
 void	ft_error(t_game *game, char *msg)
 {
@@ -56,7 +43,6 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (printf("Error\nInvalid number of arguments\n"), 0);
-	
 	game = ft_calloc(1, sizeof(t_game));
 	game->t_s = 64;
 	map_open(av[1], game);
