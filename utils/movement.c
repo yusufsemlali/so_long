@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 07:40:47 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/19 12:51:05 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/23 20:54:25 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	movement(t_game *game, int x, int y)
 	}
 	if (next == 'E' && game->c_count == 0)
 	{
-		printf("You won!\n");
+		ft_printf("You won!\n");
 		close_game(game);
 	}
 	render_map(game, x, y);

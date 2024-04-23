@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 23:07:45 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/24 03:34:06 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/23 20:49:30 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,17 @@ void	free_visited_map(t_game *game)
 	free(game->visited);
 }
 
-void	floodfill(t_game *game, int row, int col)
+void	floodfill(t_game *game, int y, int x)
 {
-	if (row < 0 || col < 0 || row >= game->rows || col >= game->cols
-		|| game->visited[row][col] == '1' || game->map[row][col] == '1')
+	if (y < 0 || x < 0 || y >= game->rows || x >= game->cols
+		|| game->visited[y][x] == '1' || game->map[y][x] == '1'
+		|| game->map[y][x] == 'E')
 		return ;
-	game->visited[row][col] = '1';
-	floodfill(game, row + 1, col);
-	floodfill(game, row - 1, col);
-	floodfill(game, row, col + 1);
-	floodfill(game, row, col - 1);
+	game->visited[y][x] = '1';
+	floodfill(game, y + 1, x);
+	floodfill(game, y - 1, x);
+	floodfill(game, y, x + 1);
+	floodfill(game, y, x - 1);
 }
 
 void	validate_path(t_game *game)

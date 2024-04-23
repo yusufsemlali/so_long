@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:23:03 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/18 16:31:35 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/23 20:53:28 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,10 @@ void	check_images(t_game *game, void **images, int num, char *message)
 			ft_error(game, message);
 		i++;
 	}
+}
+void ft_printf(char *str)
+{
+	int i = 0;
+	while (str[i])
+		write(1, &str[i++], 1);	
 }

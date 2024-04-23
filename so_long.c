@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:48:27 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/20 16:12:38 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/23 20:56:42 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	close_game(t_game *game)
 
 void	ft_error(t_game *game, char *msg)
 {
-	printf("Error\n");
-	printf("%s\n", msg);
+	ft_printf("Error\n");
+	ft_printf(msg);
 	close_game(game);
 }
 

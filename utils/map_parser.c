@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:48:33 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/03/27 02:29:53 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/04/23 20:50:32 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	map_open(char *file, t_game *game)
 
 	game->line = NULL;
 	fd = open(file, O_RDONLY);
-	printf("%d\n",fd);
 	if (fd < 0)
 		ft_error(game, "file open error");
 	line = get_next_line(fd);
