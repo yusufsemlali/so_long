@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:10:57 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/03 20:27:34 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/03 20:40:53 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,14 @@ void load_player_idle(t_game *game)
 {
 	int x;
 	int y;
-	game->player_idle[0] = get_img(game, "./assets/player/idle/idle_1.xpm", &x, &y);
-	game->player_idle[1] = get_img(game, "./assets/player/idle/idle_2.xpm", &x, &y);
-	game->player_idle[2] = get_img(game, "./assets/player/idle/idle_3.xpm", &x, &y);
-	game->player_idle[3] = get_img(game, "./assets/player/idle/idle_4.xpm", &x, &y);
-	game->player_idle[4] = get_img(game, "./assets/player/idle/idle_5.xpm", &x, &y);
-	game->player_idle[5] = get_img(game, "./assets/player/idle/idle_6.xpm", &x, &y);
-	game->player_idle[6] = get_img(game, "./assets/player/idle/idle_7.xpm", &x, &y);
-	game->player_idle[7] = get_img(game, "./assets/player/idle/idle_8.xpm", &x, &y);
+	game->player_idle[0] = get_img(game, "./assets/player/idle_1.xpm", &x, &y);
+	game->player_idle[1] = get_img(game, "./assets/player/idle_2.xpm", &x, &y);
+	game->player_idle[2] = get_img(game, "./assets/player/idle_3.xpm", &x, &y);
+	game->player_idle[3] = get_img(game, "./assets/player/idle_4.xpm", &x, &y);
+	game->player_idle[4] = get_img(game, "./assets/player/idle_5.xpm", &x, &y);
+	game->player_idle[5] = get_img(game, "./assets/player/idle_6.xpm", &x, &y);
+	game->player_idle[6] = get_img(game, "./assets/player/idle_7.xpm", &x, &y);
+	game->player_idle[7] = get_img(game, "./assets/player/idle_8.xpm", &x, &y);
 	check_images(game, game->player_idle, 8, "player idle image not found");
 }
 
