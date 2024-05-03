@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 07:40:47 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/23 20:58:17 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:45:21 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,29 @@ void	get_direction(t_game *game, int x, int y)
 
 void	animate_player(t_game *game, int new_x, int new_y)
 {
+	get_direction(game, new_x, new_y);
 	if (game->direction == FORWARD)
 		mlx_put_image_to_window(game->mlx, game->window,
-			game->player[game->frame], new_x * 64, new_y * 64);
+				game->player[game->frame], new_x * 64, new_y * 64);
 	if (game->direction == REVERSE)
 		mlx_put_image_to_window(game->mlx, game->window,
-			game->player_r[game->frame], new_x * 64, new_y * 64);
+				game->player_r[game->frame], new_x * 64, new_y * 64);
+	game->frame++;
+	if (game->frame == 8)
+		game->frame = 0;
+}
+
+void	animate_still_player(t_game *game, int x, int y)
+{
+	get_direction(game, x, y);
+	mlx_put_image_to_window(game->mlx, game->window, game->floor, x * 64, y
+			* 64);
+	if (game->direction == FORWARD)
+		mlx_put_image_to_window(game->mlx, game->window,
+				game->player[game->frame], x * 64, y * 64);
+	if (game->direction == REVERSE)
+		mlx_put_image_to_window(game->mlx, game->window,
+				game->player_r[game->frame], x * 64, y * 64);
 	game->frame++;
 	if (game->frame == 8)
 		game->frame = 0;
@@ -45,26 +62,33 @@ void	animate_player(t_game *game, int new_x, int new_y)
 void	render_map(t_game *game, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->window, game->floor, game->player_x
-		* 64, game->player_y * 64);
+			* 64, game->player_y * 64);
 	mlx_put_image_to_window(game->mlx, game->window, game->floor, x * 64, y
-		* 64);
+			* 64);
 	animate_player(game, x, y);
 }
 
 void	print_moves(t_game *game)
 {
 	char	*num;
+	char	*moves;
 
 	game->moves++;
-	num = ft_strjoin("Moves: ", ft_itoa(game->moves));
+	moves = ft_itoa(game->moves);
+	num = ft_strjoin("Moves: ", moves);
+	mlx_put_image_to_window(game->mlx, game->window, game->walls[2], 0, 0);
+	mlx_put_image_to_window(game->mlx, game->window, game->walls[2], 64, 0);
 	mlx_string_put(game->mlx, game->window, 10, 10, 0xFFFFFF, num);
+	free(moves);
+	free(num);
 }
 
 void	movement(t_game *game, int x, int y)
 {
-	char	next;
+	char next;
 
 	next = game->map[y][x];
+	animate_still_player(game, game->player_x, game->player_y);
 	if (next == '1' || (next == 'E' && game->c_count != 0))
 		return ;
 	if (next == 'C')

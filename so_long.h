@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:50:56 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/23 20:58:35 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:50:43 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define TILE_SIZE_S 32
 # define FORWARD 0
 # define REVERSE 1
+# define FRAME_DELAY 9
 
 # define KEY_W 13
 # define KEY_A 0
@@ -54,9 +55,9 @@ typedef struct s_game
 	int		e_count;
 	int		c_count;
 	int		moves;
-	void	*player_idle;
 	void	*player[8];
 	void	*player_r[8];
+	void 	*player_idle[8];
 	void	*collectable[7];
 	void	*walls[6];
 	void	*floor;
@@ -70,6 +71,8 @@ typedef struct s_game
 	int		direction;
 	int		key_is_pressed;
 	void	*close_game;
+	int 	is_moving;
+	int 	frame_counter;
 }			t_game;
 
 void		ft_printf(char *str);

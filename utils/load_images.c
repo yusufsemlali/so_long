@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:10:57 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/17 16:49:44 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:53:15 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,22 @@ void	load_player(t_game *game)
 	check_images(game, game->player, 8, "player image not found");
 }
 
+
+void load_player_idle(t_game *game)
+{
+	int x;
+	int y;
+	game->player_idle[0] = get_img(game, "./assets/player/idle/idle_1.xpm", &x, &y);
+	game->player_idle[1] = get_img(game, "./assets/player/idle/idle_2.xpm", &x, &y);
+	game->player_idle[2] = get_img(game, "./assets/player/idle/idle_3.xpm", &x, &y);
+	game->player_idle[3] = get_img(game, "./assets/player/idle/idle_4.xpm", &x, &y);
+	game->player_idle[4] = get_img(game, "./assets/player/idle/idle_5.xpm", &x, &y);
+	game->player_idle[5] = get_img(game, "./assets/player/idle/idle_6.xpm", &x, &y);
+	game->player_idle[6] = get_img(game, "./assets/player/idle/idle_7.xpm", &x, &y);
+	game->player_idle[7] = get_img(game, "./assets/player/idle/idle_8.xpm", &x, &y);
+	check_images(game, game->player_idle, 8, "player image not found");
+}
+
 void	load_images(t_game *game)
 {
 	int	x;
@@ -82,9 +98,8 @@ void	load_images(t_game *game)
 	check_images(game, &game->floor, 1, "floor image not found");
 	game->exit = get_img(game, "./assets/exit/door_1.xpm", &x, &y);
 	check_images(game, &game->exit, 1, "exit image not found");
-	game->player_idle = get_img(game, "./assets/player/idle_1.xpm", &x, &y);
-	check_images(game, &game->player_idle, 1, "player image not found");
 	load_player(game);
+	load_player_idle(game);	
 	load_player_rev(game);
 	load_walls(game);
 	load_collectables(game);
