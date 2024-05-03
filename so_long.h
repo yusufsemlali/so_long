@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:50:56 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/03 15:50:43 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/03 20:20:42 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ typedef struct s_game
 	int		frame;
 	int		direction;
 	int		key_is_pressed;
-	void	*close_game;
 	int 	is_moving;
 	int 	frame_counter;
 }			t_game;
@@ -95,5 +94,6 @@ void		check_images(t_game *game, void **images, int num, char *message);
 void		place_elements(t_game *game);
 void		place_static_elements(t_game *game, int i, int j);
 void		place_dynamic_elements(t_game *game, int i, int j, int *c_count);
+int 		valid_extension(char *file);
 
 #endif

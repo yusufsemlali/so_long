@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:48:27 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/03 15:48:26 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/03 20:20:39 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	main(int ac, char **av)
 	load_images(game);
 	mlx_hook(game->window, 2, 1L << 0, key_press_event, game);
 	mlx_hook(game->window, 3, 1L << 1, key_release_event, game);
-	mlx_hook(game->window, 17, 0, close_game, game);
 	mlx_loop_hook(game->mlx, idle_animation, game);
+	mlx_hook(game->window, 17, 0, close_game, game);
 	mlx_loop(game->mlx);
 }

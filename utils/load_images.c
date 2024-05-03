@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:10:57 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/03 15:53:15 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/03 20:27:34 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	load_player_rev(t_game *game)
 	game->player_r[5] = get_img(game, "./assets/player/run/run_r6.xpm", &x, &y);
 	game->player_r[6] = get_img(game, "./assets/player/run/run_r7.xpm", &x, &y);
 	game->player_r[7] = get_img(game, "./assets/player/run/run_r8.xpm", &x, &y);
-	check_images(game, game->player_r, 7, "player image not found");
+	check_images(game, game->player_r, 7, "player rev image not found");
 }
 
 void	load_player(t_game *game)
@@ -70,7 +70,7 @@ void	load_player(t_game *game)
 	game->player[5] = get_img(game, "./assets/player/run/run_6.xpm", &x, &y);
 	game->player[6] = get_img(game, "./assets/player/run/run_7.xpm", &x, &y);
 	game->player[7] = get_img(game, "./assets/player/run/run_8.xpm", &x, &y);
-	check_images(game, game->player, 8, "player image not found");
+	check_images(game, game->player, 8, "player run image not found");
 }
 
 
@@ -86,7 +86,7 @@ void load_player_idle(t_game *game)
 	game->player_idle[5] = get_img(game, "./assets/player/idle/idle_6.xpm", &x, &y);
 	game->player_idle[6] = get_img(game, "./assets/player/idle/idle_7.xpm", &x, &y);
 	game->player_idle[7] = get_img(game, "./assets/player/idle/idle_8.xpm", &x, &y);
-	check_images(game, game->player_idle, 8, "player image not found");
+	check_images(game, game->player_idle, 8, "player idle image not found");
 }
 
 void	load_images(t_game *game)

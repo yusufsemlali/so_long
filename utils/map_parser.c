@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:48:33 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/04/23 20:50:32 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/03 20:20:42 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,6 @@ void	get_rows_cols(t_game *game)
 	game->cols--;
 	if (game->rows < 3 || game->cols < 3)
 		ft_error(game, "map is too small");
-	if (game->rows > 100 || game->cols > 100)
-		ft_error(game, "map is too big");
-	if (game->rows > 40 || game->cols > 40)
-		game->t_s = TILE_SIZE_S;
 }
 
 void	map_open(char *file, t_game *game)
@@ -75,6 +71,8 @@ void	map_open(char *file, t_game *game)
 	char	*line;
 
 	game->line = NULL;
+	if (valid_extension(file) == -1)
+		ft_error(game, "invalid map extension");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		ft_error(game, "file open error");
