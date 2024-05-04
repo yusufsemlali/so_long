@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:59:05 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/03 15:49:21 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:39:09 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,25 @@ void	place_static_elements(t_game *game, int i, int j)
 	if (game->map[i][j] == '1')
 	{
 		if (i == 0 || i == game->rows || j == 0 || j == game->cols)
-			put_img(game, game->walls[2], j * game->t_s, i * game->t_s);
+			put_img(game, game->walls[2], j * 64, i * 64);
 		else
-			put_img(game, game->walls[5], j * game->t_s, i * game->t_s);
+			put_img(game, game->walls[5], j * 64, i * 64);
 	}
 	else if (game->map[i][j] == 'E')
-		put_img(game, game->exit, j * game->t_s, i * game->t_s);
+		put_img(game, game->exit, j * 64, i * 64);
 	else if (game->map[i][j] == '0')
-		put_img(game, game->floor, j * game->t_s, i * game->t_s);
+		put_img(game, game->floor, j * 64, i * 64);
 }
 
 void	place_dynamic_elements(t_game *game, int i, int j, int *c_count)
 {
 	if (game->map[i][j] == 'C')
 	{
-		put_img(game, game->collectable[*c_count % 7], j * game->t_s, i
-			* game->t_s);
+		put_img(game, game->collectable[*c_count % 7], j * 64, i * 64);
 		(*c_count)++;
 	}
 	else if (game->map[i][j] == 'P')
-		mlx_put_image_to_window(game->mlx, game->window, game->player_idle, j
-			* game->t_s, i * game->t_s);
+		put_img(game, game->player_idle, j * 64, i * 64);
 }
 
 void	place_elements(t_game *game)

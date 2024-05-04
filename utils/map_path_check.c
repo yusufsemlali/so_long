@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 23:07:45 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/03 16:31:46 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:46:39 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	free_visited_map(t_game *game)
 		i++;
 	}
 	free(game->visited);
+	game->visited = NULL;
 }
 
 void	floodfill(t_game *game, int y, int x)
 {
 	if (y < 0 || x < 0 || y >= game->rows || x >= game->cols
-		|| game->visited[y][x] == '1' || game->map[y][x] == '1'
-		)
+		|| game->visited[y][x] == '1' || game->map[y][x] == '1')
 		return ;
 	if (game->map[y][x] == 'E')
 	{

@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:48:33 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/03 20:20:42 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:36:31 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	map_open(char *file, t_game *game)
 		ft_error(game, "invalid map extension");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		ft_error(game, "file open error");
+		ft_error(game, "error opening file");
 	line = get_next_line(fd);
 	while (line != NULL)
 	{

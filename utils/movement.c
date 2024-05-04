@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 07:40:47 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/03 20:48:37 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/04 20:59:03 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,49 +29,35 @@ void	get_direction(t_game *game, int x, int y)
 		game->direction = REVERSE;
 }
 
-void	animate_player(t_game *game, int new_x, int new_y)
+void	animate_still_player(t_game *game, int x, int y)
 {
-	get_direction(game, new_x, new_y);
+	get_direction(game, x, y);
+	put_img(game, game->floor, x * 64, y * 64);
 	if (game->direction == FORWARD)
-		mlx_put_image_to_window(game->mlx, game->window,
-				game->player[game->frame], new_x * 64, new_y * 64);
+		put_img(game, game->player[game->frame], x * 64, y * 64);
 	if (game->direction == REVERSE)
-		mlx_put_image_to_window(game->mlx, game->window,
-				game->player_r[game->frame], new_x * 64, new_y * 64);
+		put_img(game, game->player_r[game->frame], x * 64, y * 64);
 	game->frame++;
 	if (game->frame == 8)
 		game->frame = 0;
 }
 
-
-void animate_still_player(t_game *game, int x, int y)
+void	animate_player(t_game *game, int new_x, int new_y)
 {
-    static int counter = 0;  // This counter will keep track of the delay
-
-    get_direction(game, x, y);
-    mlx_put_image_to_window(game->mlx, game->window, game->floor, x * 64, y * 64);
-    if (game->direction == FORWARD)
-        mlx_put_image_to_window(game->mlx, game->window, game->player[game->frame], x * 64, y * 64);
-    if (game->direction == REVERSE)
-        mlx_put_image_to_window(game->mlx, game->window, game->player_r[game->frame], x * 64, y * 64);
-
-    counter++;
-	if	(counter == 6)
-    {
-        game->frame++;
-        counter = 0;  // Reset the counter
-    }
-
-    if (game->frame == 8)
-        game->frame = 0;
+	get_direction(game, new_x, new_y);
+	if (game->direction == FORWARD)
+		put_img(game, game->player[game->frame], new_x * 64, new_y * 64);
+	if (game->direction == REVERSE)
+		put_img(game, game->player_r[game->frame], new_x * 64, new_y * 64);
+	game->frame++;
+	if (game->frame == 8)
+		game->frame = 0;
 }
 
 void	render_map(t_game *game, int x, int y)
 {
-	mlx_put_image_to_window(game->mlx, game->window, game->floor, game->player_x
-			* 64, game->player_y * 64);
-	mlx_put_image_to_window(game->mlx, game->window, game->floor, x * 64, y
-			* 64);
+	put_img(game, game->floor, game->player_x * 64, game->player_y * 64);
+	put_img(game, game->floor, x * 64, y * 64);
 	animate_player(game, x, y);
 }
 
@@ -92,7 +78,7 @@ void	print_moves(t_game *game)
 
 void	movement(t_game *game, int x, int y)
 {
-	char next;
+	char	next;
 
 	next = game->map[y][x];
 	animate_still_player(game, game->player_x, game->player_y);

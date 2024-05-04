@@ -6,20 +6,16 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:50:56 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/03 20:20:42 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/04 19:07:32 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-// # include <string.h>
-// # include <math.h>
-// # include <time.h>
 # include "libft/libft.h"
 # include "mlx.h"
 # include <fcntl.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -27,6 +23,8 @@
 # define TILE_SIZE_S 32
 # define FORWARD 0
 # define REVERSE 1
+# define UP 2
+# define DOWN 3
 # define FRAME_DELAY 9
 
 # define KEY_W 13
@@ -46,7 +44,6 @@ typedef struct s_game
 	char	**map;
 	char	**visited;
 	char	*line;
-	int		t_s;
 	int		rows;
 	int		cols;
 	int		player_x;
@@ -69,7 +66,7 @@ typedef struct s_game
 	int		y;
 	int		frame;
 	int		direction;
-	int		key_is_pressed;
+	int 	last_direction;
 	int 	is_moving;
 	int 	frame_counter;
 }			t_game;

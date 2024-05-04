@@ -6,14 +6,11 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:48:27 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/03 20:20:39 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:47:54 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "so_long.h"
-#include <mlx.h>
-#include <stdio.h>
 
 void	ft_error(t_game *game, char *msg)
 {
@@ -61,7 +58,6 @@ int	key_release_event(int keycode, t_game *game)
 	return (0);
 }
 
-
 int	idle_animation(t_game *game)
 {
 	if (game->is_moving == 0)
@@ -88,13 +84,12 @@ int	main(int ac, char **av)
 	t_game	*game;
 
 	if (ac != 2)
-		return (printf("Error\nInvalid number of arguments\n"), 0);
+		ft_error(NULL, "Invalid number of arguments");
 	game = ft_calloc(1, sizeof(t_game));
-	game->t_s = 64;
 	map_open(av[1], game);
 	game->mlx = mlx_init();
-	game->w = (game->cols + 1) * game->t_s;
-	game->h = (game->rows + 1) * game->t_s;
+	game->w = (game->cols + 1) * 64;
+	game->h = (game->rows + 1) * 64;
 	game->window = mlx_new_window(game->mlx, game->w, game->h, "so_long");
 	load_images(game);
 	mlx_hook(game->window, 2, 1L << 0, key_press_event, game);
