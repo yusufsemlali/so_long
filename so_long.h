@@ -54,7 +54,7 @@ typedef struct s_game
 	int		moves;
 	void	*player[8];
 	void	*player_r[8];
-	void 	*player_idle[8];
+	void	*player_idle[8];
 	void	*collectable[7];
 	void	*walls[6];
 	void	*floor;
@@ -66,9 +66,9 @@ typedef struct s_game
 	int		y;
 	int		frame;
 	int		direction;
-	int 	last_direction;
-	int 	is_moving;
-	int 	frame_counter;
+	int		last_direction;
+	int		is_moving;
+	int		frame_counter;
 }			t_game;
 
 void		ft_printf(char *str);
@@ -91,6 +91,6 @@ void		check_images(t_game *game, void **images, int num, char *message);
 void		place_elements(t_game *game);
 void		place_static_elements(t_game *game, int i, int j);
 void		place_dynamic_elements(t_game *game, int i, int j, int *c_count);
-int 		valid_extension(char *file);
+int			valid_extension(char *file);
 
 #endif

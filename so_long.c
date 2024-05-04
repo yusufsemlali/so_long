@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:48:27 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/04 18:47:54 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/04 21:22:45 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,15 @@ int	key_release_event(int keycode, t_game *game)
 
 int	idle_animation(t_game *game)
 {
+	int	player_x;
+	int	player_y;
+
 	if (game->is_moving == 0)
 	{
-		mlx_put_image_to_window(game->mlx, game->window, game->floor,
-				game->player_x * 64, game->player_y * 64);
-		mlx_put_image_to_window(game->mlx, game->window,
-				game->player_idle[game->frame], game->player_x * 64,
-				game->player_y * 64);
+		player_x = game->player_x * 64;
+		player_y = game->player_y * 64;
+		put_img(game, game->floor, player_x, player_y);
+		put_img(game, game->player_idle[game->frame], player_x, player_y);
 		game->frame_counter++;
 		if (game->frame_counter >= FRAME_DELAY)
 		{
