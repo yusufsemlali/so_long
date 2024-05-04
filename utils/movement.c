@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 07:40:47 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/04 20:59:03 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/04 21:04:19 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,9 @@ void	get_direction(t_game *game, int x, int y)
 
 	dx = x - game->player_x;
 	dy = y - game->player_y;
-	if (dx == 1)
+	if (dx == 1 || dy == 1)
 		game->direction = FORWARD;
-	if (dx == -1)
-		game->direction = REVERSE;
-	if (dy == 1)
-		game->direction = FORWARD;
-	if (dy == -1)
+	if (dx == -1 || dy == -1)
 		game->direction = REVERSE;
 }
 
@@ -52,13 +48,6 @@ void	animate_player(t_game *game, int new_x, int new_y)
 	game->frame++;
 	if (game->frame == 8)
 		game->frame = 0;
-}
-
-void	render_map(t_game *game, int x, int y)
-{
-	put_img(game, game->floor, game->player_x * 64, game->player_y * 64);
-	put_img(game, game->floor, x * 64, y * 64);
-	animate_player(game, x, y);
 }
 
 void	print_moves(t_game *game)
@@ -94,7 +83,9 @@ void	movement(t_game *game, int x, int y)
 		ft_printf("You won!\n");
 		close_game(game);
 	}
-	render_map(game, x, y);
+	put_img(game, game->floor, game->player_x * 64, game->player_y * 64);
+	put_img(game, game->floor, x * 64, y * 64);
+	animate_player(game, x, y);
 	game->map[game->player_y][game->player_x] = '0';
 	game->map[y][x] = 'P';
 	game->player_x = x;
