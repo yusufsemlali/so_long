@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 21:14:47 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/04 20:57:30 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:37:51 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int	close_game(t_game *game)
 	}
 	if (game->line)
 		free(game->line);
-	free_assets(game);
+	if (game->images_loaded == 1)
+		free_assets(game);
 	free(game);
-	system("leaks so_long");
 	exit(0);
 }

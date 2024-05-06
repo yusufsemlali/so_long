@@ -6,7 +6,7 @@
 /*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:50:56 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/05/04 19:07:32 by ysemlali         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:03:05 by ysemlali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,17 @@
 # define TILE_SIZE_S 32
 # define FORWARD 0
 # define REVERSE 1
-# define UP 2
-# define DOWN 3
 # define FRAME_DELAY 9
 
 # define KEY_W 13
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
-# define KEY_ESC 53
 # define KEY_UP 126
 # define KEY_DOWN 125
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
+# define KEY_ESC 53
 
 typedef struct s_game
 {
@@ -69,6 +67,7 @@ typedef struct s_game
 	int		last_direction;
 	int		is_moving;
 	int		frame_counter;
+	int		images_loaded;
 }			t_game;
 
 void		ft_printf(char *str);
@@ -78,15 +77,12 @@ void		count_characters(char *map, t_game *game);
 void		map_path_check(t_game *game);
 int			ft_strall(char *str, char c);
 void		load_images(t_game *game);
-void		load_small_images(t_game *game);
 void		movement(t_game *game, int x, int y);
 int			close_game(t_game *game);
-void		game_update(t_game *game);
 int			key_press_event(int keycode, t_game *game);
 int			key_release_event(int keycode, t_game *game);
 void		*get_img(t_game *game, char *filepath, int *x, int *y);
 void		put_img(t_game *game, void *img, int x, int y);
-void		print_number_of_moves(t_game *game, char pos);
 void		check_images(t_game *game, void **images, int num, char *message);
 void		place_elements(t_game *game);
 void		place_static_elements(t_game *game, int i, int j);
